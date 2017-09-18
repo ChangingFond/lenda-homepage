@@ -104,7 +104,7 @@
   <div class="container">
     <div class="row">
 
-      <ul class="col-sm-12 top20 car-letter">
+      <ul class="col-sm-12 top15 car-letter">
         <li v-for="letter in letters">
           <a href="javascript:;" :class="{'active': letter==curLetter}" @click="curLetter=letter">
             {{ letter }}
@@ -112,8 +112,8 @@
         </li>
       </ul>
 
-      <ul id="filters" class="col-sm-12 car-branch">
-        <li v-for="item in itemList" v-btn-inserted="item">
+      <ul class="col-sm-12 car-branch">
+        <li v-for="item in itemList" v-if="curLetter==item.letter">
           <a href="javascript:;" :class="{'active':curBranch==item.branch}" @click="curBranch=item.branch"
           class="filter btn_fill_white btn_border btn_default" :data-filter="item.branch">
             {{ item.branch }}
@@ -122,7 +122,7 @@
       </ul>
 
       <div id="portfoliolist">
-        <div v-for="product in productList" v-product-inserted="product" :class="curBranch+' portfolio'" :data-cat="curBranch">
+        <div v-for="product in productList" v-if="product.branch==curBranch" class="portfolio">
           <div class="portfolio-wrapper">
             <a :href="product.productImage" alt="" />
             <img :src="product.productImage" alt="" />
@@ -134,52 +134,6 @@
           </div>
         </div>
       </div>
-      <!-- <div id="portfoliolist1">
-        <div class="portfolio HONDA" data-cat="HONDA">
-          <div class="portfolio-wrapper">
-            <a href="images/radiator/HONDA/1.jpg" alt="" />
-            <img src="images/radiator/HONDA/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">HONDA-RA-1</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio AUDI" data-cat="AUDI">
-          <div class="portfolio-wrapper">
-            <a href="images/radiator/AUDI/1.jpg" alt="" />
-            <img src="images/radiator/AUDI/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">AUDI-RA-1</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio HONDA" data-cat="HONDA">
-          <div class="portfolio-wrapper">
-            <a href="images/radiator/HONDA/1.jpg" alt="" />
-            <img src="images/radiator/HONDA/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">HONDA-RA-1</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio HONDA" data-cat="HONDA">
-          <div class="portfolio-wrapper">
-            <a href="images/radiator/HONDA/1.jpg" alt="" />
-            <img src="images/radiator/HONDA/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">HONDA-RA-1</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </div>
   </div>
@@ -260,8 +214,6 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.countTo.js"></script>
 <script src="js/jquery.fancybox.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script src="js/jquery.mixitup.min.js"></script>
 <script src="js/jquery.themepunch.tools.min.js"></script>
 <script src="js/jquery.themepunch.revolution.min.js"></script>
 <script src="js/revolution.extension.actions.min.js"></script>
@@ -273,39 +225,25 @@
 <script src="js/wow.min.js"></script>
 <script src="js/counter.js"></script>
 <script src="js/vue.js"></script>
-<script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+<script src="js/axios.min.js"></script>
 <script src="js/functions.js"></script>
 
 <script type="text/javascript">
 $(function () {
-
-  var filterList = {
-    init: function () {
-      // MixItUp plugin
-      $('#portfoliolist').mixitup({
-        targetSelector: '.portfolio',
-        filterSelector: '.filter',
-        effects: ['fade'],
-        easing: 'snap',
-        // call the hover effect
-        // onMixEnd: filterList.hoverEffect()
-      });
-    }
-  };
 
   var vm = new Vue({
     el: '.product',
     data:{
       itemList: [],
       productList: [],
-      letters: ['A', 'B', 'C', 'D','H','I','N','M'],
+      letters: [],
       curLetter: '',
-      curBranch: 'HONDA'
+      curBranch: ''
     },
     mounted() {
       this.$nextTick(function() {
         this.getitemList();
-        filterList.init();
+        this.getLetters();
       });
     },
     methods:{
@@ -321,34 +259,17 @@ $(function () {
           }
         });
       },
+      getLetters() {
+        for(var i = 0; i < 26; i++) {
+          this.letters.push(String.fromCharCode((65+i)));
+        }
+      },
     }
   });
-
-  Vue.directive('btn-inserted', {
-    // inserted: function (el, binding) {
-    //   filterList.init();
-    // },
-    inserted:function (el, binding) {
-      filterList.init();
-    }
-  });
-
-  Vue.directive('product-inserted', {
-    // inserted: function (el, binding) {
-    //   filterList.init();
-    // },
-    inserted:function (el, binding) {
-      filterList.init();
-      console.log(1)
-    }
-  });
-
 
   $(".portfolio-wrapper > a").fancybox({
     'cyclic': true
   });
-
-
 
 });
 </script>
