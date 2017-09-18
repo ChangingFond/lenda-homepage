@@ -1479,14 +1479,6 @@ ul.checks{}
 
       /* -------------- PRODUCT -------------- */
 
-
-      #filters {
-      	margin-top: 1%;
-        padding-bottom: 1%;
-      	/*padding:0;*/
-      	list-style:none;
-      }
-
       .product .car-letter{
         border-bottom: 1px solid #d9d9d9;
         padding-bottom: .6rem;
@@ -1494,19 +1486,21 @@ ul.checks{}
 
       .product .car-letter li{
         display: inline;
-        padding-right: 1.94rem;
+        padding-right: 2.7%;
       }
       .product .car-letter li a:hover{
         color: red;
+        font-size: 1.1rem;
       }
       .product .car-letter li a.active{
         color: red;
         font-size: 1.4rem;
-        text-decoration: underline;
       }
 
       .product .car-branch{
         border-bottom: 1px solid #d9d9d9;
+        list-style:none;
+        margin-top: 1%;
         padding-bottom: .6rem;
       }
 
@@ -1518,16 +1512,16 @@ ul.checks{}
       .product .car-branch li a{
         font-size: 14px;
       }
+
       #portfoliolist .portfolio {
-      	-webkit-box-sizing: border-box;
-      	-moz-box-sizing: border-box;
-      	-o-box-sizing: border-box;
-      	width:23%;
-      	margin:1%;
-      	display:none;
-      	float:left;
-      	overflow:hidden;
+        -o-box-sizing: border-box;
+        display: inline-block;
+        float: left;
+        margin: 1%;
+        opacity: 1;
+        overflow:hidden;
         text-align: center;
+        width:23%;
       }
 
       .portfolio-wrapper {
