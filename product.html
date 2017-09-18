@@ -100,11 +100,12 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <h1 class="text-capitalize top40">Our Products</h1>
+        <h1 class="text-capitalize top40">Products - Radiator</h1>
         <p class="bottom30">Look forward to hear from you!</p>
         <ul class="breadcrumb_link">
-          <li><a href="#index.html">Home</a></li>
+          <li class="active"><a href="#index.html">Home</a></li>
           <li class="active">Product</li>
+          <li>Radiator</li>
         </ul>
       </div>
     </div>
@@ -116,475 +117,88 @@
 <section class="product margin_top margin_bottom">
   <div class="container">
     <div class="row">
-      <div class="col-sm-1 col-md-3"></div>
-      <div class="col-sm-12 col-md-6 text-center">
-        <h2>Radiator</h2>
-      </div>
-      <div class="col-sm-1 col-md-3"></div>
-      <ul id="filters" class="col-sm-12 bottom40 top20 car-branch">
-        <li><a href="javascript:;" class="filter btn_fill_white btn_border btn_default active" data-filter="app card icon logo web">MIHUBISHI</a></li>
-        <li><a href="#." class="filter btn_fill_white btn_border btn_default" data-filter="app">HONDA</a></li>
-        <li><a href="#." class="filter btn_fill_white btn_border btn_default" data-filter="card">SUBARU</a></li>
-        <li><a href="#." class="filter btn_fill_white btn_border btn_default" data-filter="icon">ISUZU</a></li>
-        <li><a href="#." class="filter btn_fill_white btn_border btn_default" data-filter="logo">MAZDA</a></li>
-        <li><a href="#." class="filter btn_fill_white btn_border btn_default" data-filter="web">NISSAN</a></li>
+
+      <ul class="col-sm-12 top20 car-letter">
+        <li v-for="letter in letters">
+          <a href="javascript:;" :class="{'active': letter==curLetter}" @click="curLetter=letter">
+            {{ letter }}
+          </a>
+        </li>
+      </ul>
+
+      <ul id="filters" class="col-sm-12 car-branch">
+        <li v-for="item in itemList" v-btn-inserted="item">
+          <a href="javascript:;" :class="{'active':curBranch==item.branch}" @click="curBranch=item.branch"
+          class="filter btn_fill_white btn_border btn_default" :data-filter="item.branch">
+            {{ item.branch }}
+          </a>
+        </li>
       </ul>
 
       <div id="portfoliolist">
-
-        <div class="portfolio logo" data-cat="logo">
+        <div v-for="product in productList" v-product-inserted="product" :class="curBranch+' portfolio'" :data-cat="curBranch">
           <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/5.jpg" alt="" />
+            <a :href="product.productImage" alt="" />
+            <img :src="product.productImage" alt="" />
             <div class="label">
               <div class="label-text">
-                <a class="text-title">Bird Document</a>
-                <span class="text-category">Logo</span>
+                <a class="text-title">{{ product.productName }}</a>
               </div>
-              <div class="label-bg"></div>
             </div>
           </div>
         </div>
-
-        <div class="portfolio app" data-cat="app">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/app/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Visual Infography</a>
-                <span class="text-category">APP</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio web" data-cat="web">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/web/4.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Sonor's Design</a>
-                <span class="text-category">Web design</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio card" data-cat="card">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/card/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Typography Company</a>
-                <span class="text-category">Business card</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio app" data-cat="app">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/app/3.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Weatherette</a>
-                <span class="text-category">APP</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio card" data-cat="card">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/card/4.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">BMF</a>
-                <span class="text-category">Business card</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio card" data-cat="card">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/card/5.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Techlion</a>
-                <span class="text-category">Business card</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">KittyPic</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio app" data-cat="app">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/app/2.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Graph Plotting</a>
-                <span class="text-category">APP</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio card" data-cat="card">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/card/2.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">QR Quick Response</a>
-                <span class="text-category">Business card</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/6.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Mobi Sock</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/7.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Village Community Church</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio icon" data-cat="icon">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/icon/4.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Domino's Pizza</a>
-                <span class="text-category">Icon</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio web" data-cat="web">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/web/3.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Backend Admin</a>
-                <span class="text-category">Web design</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio icon" data-cat="icon">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/icon/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Instagram</a>
-                <span class="text-category">Icon</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio web" data-cat="web">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/web/2.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Student Guide</a>
-                <span class="text-category">Web design</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio icon" data-cat="icon">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/icon/2.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Scoccer</a>
-                <span class="text-category">Icon</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio icon" data-cat="icon">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/icon/5.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">3D Map</a>
-                <span class="text-category">Icon</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio web" data-cat="web">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/web/1.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Note</a>
-                <span class="text-category">Web design</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/3.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Native Designers</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/4.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Bookworm</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio icon" data-cat="icon">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/icon/3.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Sandwich</a>
-                <span class="text-category">Icon</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio card" data-cat="card">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/card/3.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Reality</a>
-                <span class="text-category">Business card</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio logo" data-cat="logo">
-          <div class="portfolio-wrapper">
-            <img src="img/portfolios/logo/2.jpg" alt="" />
-            <div class="label">
-              <div class="label-text">
-                <a class="text-title">Speciallisterne</a>
-                <span class="text-category">Logo</span>
-              </div>
-              <div class="label-bg"></div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
-
-      <!-- <div class="col-sm-12">
-        <div class="row">
-          <div id="publication" class="owl-carousel no_pagination">
-            <div class="item">
-              <div class="news_wrap">
-                <div class="image bottom40">
-                  <img src="images/news1.jpg" alt="publications">
-                </div>
-                <span class="comments">EXPORTING</span>
-                <h4 class="top10 bottom10">Auto Radiator</h4>
-                <span class="comments">by <a href="#." class="name">Smith</a></span> -<span class="comments"><a href="#." class="active">5 Comments</a></span>
-                <p class="top30 bottom30">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly. Keep away from people who try to belittle your ambitions. </p>
-                <a href="#." class="btn_readmore pull-right">Read More</a>
+      <!-- <div id="portfoliolist1">
+        <div class="portfolio HONDA" data-cat="HONDA">
+          <div class="portfolio-wrapper">
+            <a href="images/radiator/HONDA/1.jpg" alt="" />
+            <img src="images/radiator/HONDA/1.jpg" alt="" />
+            <div class="label">
+              <div class="label-text">
+                <a class="text-title">HONDA-RA-1</a>
               </div>
             </div>
-            <div class="item">
-              <div class="news_wrap">
-                <div id="single_items" class="owl-carousel bottom40">
-                  <div class="item">
-                    <div class="image"><img src="images/news2.jpg" alt="publications"></div>
-                  </div>
-                  <div class="item">
-                    <div class="image"><img src="images/news1.jpg" alt="publications"></div>
-                  </div>
-                  <div class="item image">
-                    <div class="image"><img src="images/news2.jpg" alt="publications"></div>
-                  </div>
-                </div>
-                <span class="comments">EXPORTING</span>
-                <h4 class="top10 bottom10">Intercooler</h4>
-                <span class="comments">by <a href="#." class="name">Smith</a></span> -<span class="comments"><a href="#." class="active">5 Comments</a></span>
-                <p class="top30 bottom30">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly. Keep away from people who try to belittle your ambitions. </p>
-                <a href="#." class="btn_readmore pull-right">Read More</a>
+          </div>
+        </div>
+        <div class="portfolio AUDI" data-cat="AUDI">
+          <div class="portfolio-wrapper">
+            <a href="images/radiator/AUDI/1.jpg" alt="" />
+            <img src="images/radiator/AUDI/1.jpg" alt="" />
+            <div class="label">
+              <div class="label-text">
+                <a class="text-title">AUDI-RA-1</a>
               </div>
             </div>
-            <div class="item">
-              <div class="news_wrap">
-                <div class="image bottom40">
-                  <img src="images/news3.jpg" alt="publications">
-                </div>
-                <span class="comments">EXPORTING</span>
-                <h4 class="top10 bottom10">Auto Engine</h4>
-                <span class="comments">by <a href="#." class="name">Smith</a></span> -<span class="comments"><a href="#." class="active">5 Comments</a></span>
-                <p class="top30 bottom30">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly. Keep away from people who try to belittle your ambitions. </p>
-                <a href="#." class="btn_readmore pull-right">Read More</a>
+          </div>
+        </div>
+        <div class="portfolio HONDA" data-cat="HONDA">
+          <div class="portfolio-wrapper">
+            <a href="images/radiator/HONDA/1.jpg" alt="" />
+            <img src="images/radiator/HONDA/1.jpg" alt="" />
+            <div class="label">
+              <div class="label-text">
+                <a class="text-title">HONDA-RA-1</a>
               </div>
             </div>
-            <div class="item">
-              <div class="news_wrap">
-                <div class="image bottom40">
-                  <img src="images/news1.jpg" alt="publications">
-                </div>
-                <span class="comments">EXPORTING</span>
-                <h4 class="top10 bottom10">Other Parts</h4>
-                <span class="comments">by <a href="#." class="name">Smith</a></span> -<span class="comments"><a href="#." class="active">5 Comments</a></span>
-                <p class="top30 bottom30">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly. Keep away from people who try to belittle your ambitions. </p>
-                <a href="#." class="btn_readmore pull-right">Read More</a>
+          </div>
+        </div>
+        <div class="portfolio HONDA" data-cat="HONDA">
+          <div class="portfolio-wrapper">
+            <a href="images/radiator/HONDA/1.jpg" alt="" />
+            <img src="images/radiator/HONDA/1.jpg" alt="" />
+            <div class="label">
+              <div class="label-text">
+                <a class="text-title">HONDA-RA-1</a>
               </div>
             </div>
           </div>
         </div>
       </div> -->
+
     </div>
   </div>
 </section>
 <!-- Products Ends -->
-
-<!-- Services -->
-<!-- <section class="padding_top padding_bottom_half gallery-services">
-  <h3 class="hidden">hidden</h3>
-  <div class="container-fluid">
-    <article class="col-md-6 bottom30">
-      <div class="row">
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="300ms">
-          <div class="service_desc colorone text-center">
-            <div class="service_inner centered">
-              <i class="icon-icons9"></i>
-              <h4 class="top20 bottom15">Unlimited Features</h4>
-              <p>Keep away from people who try to belittle your ambitions. Small people always do that but the really Keep away from people  great.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="400ms">
-          <img src="images/service1.jpg" alt=""  class="service_photo img-responsive">
-        </div>
-      </div>
-    </article>
-    <article class="col-md-6 bottom30">
-      <div class="row">
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-          <div class="service_desc colortwo text-center">
-            <div class="service_inner centered">
-              <i class="icon-icons9"></i>
-              <h4 class="top20 bottom15">Unlimited Features</h4>
-              <p>Keep away from people who try to belittle your ambitions. Small people always do that but the really Keep away from people  great.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="300ms">
-          <img src="images/service2.jpg" alt=""  class="service_photo img-responsive">
-        </div>
-      </div>
-    </article>
-    <article class="col-md-6 bottom30">
-      <div class="row">
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="400ms">
-          <img src="images/service3.jpg" alt=""  class="service_photo img-responsive">
-        </div>
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-          <div class="service_desc colorthree text-center">
-            <div class="service_inner centered">
-              <i class="icon-icons9"></i>
-              <h4 class="top20 bottom15">Unlimited Features</h4>
-              <p>Keep away from people who try to belittle your ambitions. Small people always do that but the really Keep away from people  great.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="col-md-6 bottom30">
-      <div class="row">
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-          <img src="images/service4.jpg" alt=""  class="service_photo img-responsive">
-        </div>
-        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="600ms">
-          <div class="service_desc colorfour text-center">
-            <div class="service_inner centered">
-              <i class="icon-icons9"></i>
-              <h4 class="top20 bottom15">Unlimited Features</h4>
-              <p>Keep away from people who try to belittle your ambitions. Small people always do that but the really Keep away from people  great.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section> -->
-<!-- Services Ends -->
 
 <!--FOOTER-->
 <footer class="dark">
@@ -662,7 +276,6 @@
 <script src="js/jquery.fancybox.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/jquery.mixitup.min.js"></script>
-<script src="js/jquery.fancybox-media.js"></script>
 <script src="js/jquery.themepunch.tools.min.js"></script>
 <script src="js/jquery.themepunch.revolution.min.js"></script>
 <script src="js/revolution.extension.actions.min.js"></script>
@@ -671,18 +284,17 @@
 <script src="js/revolution.extension.parallax.min.js"></script>
 <script src="js/revolution.extension.slideanims.min.js"></script>
 <script src="js/revolution.extension.kenburn.min.js"></script>
-<script src="js/revolution.extension.video.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/counter.js"></script>
+<script src="js/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
 <script src="js/functions.js"></script>
 
 <script type="text/javascript">
 $(function () {
 
   var filterList = {
-
     init: function () {
-
       // MixItUp plugin
       $('#portfoliolist').mixitup({
         targetSelector: '.portfolio',
@@ -690,31 +302,66 @@ $(function () {
         effects: ['fade'],
         easing: 'snap',
         // call the hover effect
-        onMixEnd: filterList.hoverEffect()
+        // onMixEnd: filterList.hoverEffect()
       });
-
-    },
-
-    hoverEffect: function () {
-
-      // Simple parallax effect
-      $('#portfoliolist .portfolio').hover(
-        function () {
-          $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
-          $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
-        },
-        function () {
-          $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
-          $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
-        }
-      );
-
     }
-
   };
 
-  // Run the show!
-  filterList.init();
+  var vm = new Vue({
+    el: '.product',
+    data:{
+      itemList: [],
+      productList: [],
+      letters: ['A', 'B', 'C', 'D','H','I','N','M'],
+      curLetter: '',
+      curBranch: 'HONDA'
+    },
+    mounted() {
+      this.$nextTick(function() {
+        this.getitemList();
+        filterList.init();
+      });
+    },
+    methods:{
+      getitemList() {
+        axios.get('data/radiator.json', {}).then(res => {
+          if(res.data.status == 0) {
+            this.itemList = res.data.result;
+            this.itemList.forEach( (item) => {
+              item.products.forEach( (product) => {
+                this.productList.push(product);
+              })
+            });
+          }
+        });
+      },
+    }
+  });
+
+  Vue.directive('btn-inserted', {
+    // inserted: function (el, binding) {
+    //   filterList.init();
+    // },
+    inserted:function (el, binding) {
+      filterList.init();
+    }
+  });
+
+  Vue.directive('product-inserted', {
+    // inserted: function (el, binding) {
+    //   filterList.init();
+    // },
+    inserted:function (el, binding) {
+      filterList.init();
+      console.log(1)
+    }
+  });
+
+
+  $(".portfolio-wrapper > a").fancybox({
+    'cyclic': true
+  });
+
 
 
 });
