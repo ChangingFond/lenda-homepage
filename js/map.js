@@ -16,7 +16,7 @@ jQuery(function ($) {
 
          //add locations
              var locations = [
-                 ['Melbourne office', 39.1576621,117.3326483,'images/pin.png'],
+                 ['LENDA International Trading Co.,Ltd', 39.1576621,117.3326483,'images/pin.png'],
                 //  ['Sunshine West', -37.795000, 144.816000,'images/pin.png'],
              ];
              //declare marker call it 'i'
