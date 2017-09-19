@@ -106,18 +106,14 @@
 
       <ul class="col-sm-12 top15 car-letter">
         <li v-for="letter in letters">
-          <a href="javascript:;" :class="{'active': letter==curLetter}" @click="curLetter=letter">
-            {{ letter }}
-          </a>
+          <a href="javascript:;" :class="{'active': letter==curLetter}" @click="curLetter=letter" v-text="letter"></a>
         </li>
       </ul>
 
       <ul class="col-sm-12 car-branch">
         <li v-for="item in itemList" v-if="curLetter==item.letter">
-          <a href="javascript:;" :class="{'active':curBranch==item.branch}" @click="curBranch=item.branch"
-          class="filter btn_fill_white btn_border btn_default" :data-filter="item.branch">
-            {{ item.branch }}
-          </a>
+          <a v-cloak href="javascript:;" :class="{'active':curBranch==item.branch}" @click="curBranch=item.branch"
+          class="filter btn_fill_white btn_border btn_default" :data-filter="item.branch" v-text="item.branch"></a>
         </li>
       </ul>
 
@@ -128,7 +124,7 @@
             <img :src="product.productImage" alt="" />
             <div class="label">
               <div class="label-text">
-                <a class="text-title">{{ product.productName }}</a>
+                <a class="text-title" v-text="product.productName"></a>
               </div>
             </div>
           </div>
@@ -212,7 +208,7 @@
 <script src="js/bootsnav.js"></script>
 <script src="js/jquery.cubeportfolio.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.countTo.js"></script>
+<!-- <script src="js/jquery.countTo.js"></script> -->
 <script src="js/jquery.fancybox.js"></script>
 <script src="js/jquery.themepunch.tools.min.js"></script>
 <script src="js/jquery.themepunch.revolution.min.js"></script>
@@ -223,8 +219,8 @@
 <script src="js/revolution.extension.slideanims.min.js"></script>
 <script src="js/revolution.extension.kenburn.min.js"></script>
 <script src="js/wow.min.js"></script>
-<script src="js/counter.js"></script>
-<script src="js/vue.js"></script>
+<!-- <script src="js/counter.js"></script> -->
+<script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>
 <script src="js/functions.js"></script>
 
