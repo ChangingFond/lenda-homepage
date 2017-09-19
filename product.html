@@ -25,6 +25,7 @@
 
 <body>
 
+
 <!--HEADER STARTS-->
 <header class="transparent">
   <nav class="navbar navbar-default navbar-fixed white no-background bootsnav">
@@ -42,13 +43,13 @@
         <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="dropdown active">
-            <a href="product.html">Product</a>
+          <li class="dropdown">
+            <a href="javascript:;">Product</a>
             <ul class="dropdown-menu">
-              <li><a href="#">Radiator</a></li>
-              <li><a href="#">Engine</a></li>
-              <li><a href="#">Profender</a></li>
-              <li><a href="#">Winch</a></li>
+              <li><a href="product.html?Radiator">Radiator</a></li>
+              <li><a href="product.html?Engine">Engine</a></li>
+              <li><a href="product.html?Intercooler">Intercooler</a></li>
+              <li><a href="product.html?Others">Others</a></li>
             </ul>
           </li>
           <li><a href="contact.html">Contact Us</a></li>
@@ -81,17 +82,18 @@
   </nav>
 </header>
 
+<div id="app">
 <!-- Page Header -->
 <section class="padding page_header page_header_one">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <h1 class="text-capitalize top40">Products - Radiator</h1>
+        <h1 class="text-capitalize top40">Products - {{ type }}</h1>
         <p class="bottom30">Look forward to hear from you!</p>
         <ul class="breadcrumb_link">
           <li class="active"><a href="#index.html">Home</a></li>
           <li class="active">Product</li>
-          <li>Radiator</li>
+          <li v-text="type"></li>
         </ul>
       </div>
     </div>
@@ -135,7 +137,7 @@
   </div>
 </section>
 <!-- Products Ends -->
-
+</div>
 <!--FOOTER-->
 <footer class="dark">
   <div class="container">
@@ -205,7 +207,6 @@
 </div>
 <!--copyright ends-->
 
-
 <script src="js/jquery-2.2.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.parallax-1.1.3.js"></script>
@@ -213,7 +214,6 @@
 <script src="js/bootsnav.js"></script>
 <script src="js/jquery.cubeportfolio.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
-<!-- <script src="js/jquery.countTo.js"></script> -->
 <script src="js/jquery.fancybox.js"></script>
 <script src="js/jquery.themepunch.tools.min.js"></script>
 <script src="js/jquery.themepunch.revolution.min.js"></script>
@@ -224,7 +224,6 @@
 <script src="js/revolution.extension.slideanims.min.js"></script>
 <script src="js/revolution.extension.kenburn.min.js"></script>
 <script src="js/wow.min.js"></script>
-<!-- <script src="js/counter.js"></script> -->
 <script src="js/vue.min.js"></script>
 <script src="js/axios.min.js"></script>
 <script src="js/functions.js"></script>
@@ -233,8 +232,9 @@
 $(function () {
 
   var vm = new Vue({
-    el: '.product',
+    el: '#app',
     data:{
+      type: '',
       itemList: [],
       productList: [],
       letters: [],
@@ -243,11 +243,15 @@ $(function () {
     },
     mounted() {
       this.$nextTick(function() {
+        this.getUrlParam();
         this.getitemList();
         this.getLetters();
       });
     },
     methods:{
+      getUrlParam() {
+        this.type = decodeURIComponent(location.search).slice(1);
+      },
       getitemList() {
         axios.get('data/radiator.json', {}).then(res => {
           if(res.data.status == 0) {
