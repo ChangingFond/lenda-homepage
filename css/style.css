@@ -124,6 +124,7 @@ h6, .h6 {
 p{
   font-family: 'Source Sans Pro';
   color:#535353;
+  font-size:0.9rem;
 }
 p.title{
   font-size:1rem;
@@ -1525,16 +1526,16 @@ ul.checks{}
       }
 
       .portfolio-wrapper {
+        background: #535353;
+        cursor:pointer;
     		overflow:hidden;
     		position: relative !important;
-    		background: #535353;
-    		cursor:pointer;
     	}
 
       .portfolio img{
         max-height:100%;
         max-width:100%;
-        transition: all .6s ease;
+        transition: all 1s ease;
         position: relative;
       }
 
