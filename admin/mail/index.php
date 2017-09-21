@@ -26,7 +26,7 @@ try {
 
   //Recipients
   $mail->setFrom('782773117@qq.com', 'Lenda-Contact');
-  $mail->addAddress('fcj2113@163.com', 'Lenda-CEO');     // Add a recipient
+  $mail->addAddress('eddy@tjlenda.com', 'Lenda-CEO');     // Add a recipient
   // $mail->addAddress('mail@fangchengjin.cn');              // Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
   // $mail->addCC('cc@example.com');
