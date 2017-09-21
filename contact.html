@@ -151,8 +151,9 @@
               </div>
               <div class="col-sm-12">
                 <div class="form-group">
-                  <textarea class="form-control" name="message" placeholder="Your Message" oninvalid="setCustomValidity('please enter message')" oninput="setCustomValidity('')" required></textarea>
+                  <textarea class="form-control" id="message" name="message" placeholder="Your Message" oninvalid="setCustomValidity('please enter message')" oninput="setCustomValidity('')" required></textarea>
                 </div>
+                <label class="tip" style="color:red"></label>
                 <button type="submit" id="submit" class="btn_border btn_default active pull-right">send message</button>
               </div>
             </div>
@@ -253,15 +254,21 @@
   <script type="text/javascript">
   $(function () {
     $("#submit").click(function() {
-      axios.post('admin/mail/', $("#form").serialize()).then((res) => {
-        if(res.data.status == 1) {
-            // alert("Successful! We will contact you soon!");
+
+      if($("input[name='name']").val()=="" || $("input[name='email']").val()=="" || $("#message").val() == "") {
+        $(".tip").html("Please fill in all blanks");
+      }else {
+        axios.post('admin/mail/', $("#form").serialize()).then((res) => {
+          if(res.data.status == 1) {
+            $(".tip").html("Successful! We will contact you soon!");
           }else {
-            // alert("can't send this message! Please try again.");
+            $(".tip").html("can't send this message! Please try again.");
           }
-      }).catch((err) => {
-        // alert("can't send this message! Please try again.");
-      });
+        }).catch((err) => {
+          // alert("can't send this message! Please try again.");
+        });
+      }
+
     })
   })
   </script>
