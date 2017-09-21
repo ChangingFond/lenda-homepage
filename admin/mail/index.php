@@ -7,10 +7,7 @@ require './PHPMailer/PHPMailer.php';
 require './PHPMailer/SMTP.php';
 
 // header('Access-Control-Allow-Origin:*');//注意！跨域要加这个头 上面那个没有
-//
-// $data = $GLOBALS['HTTP_RAW_POST_DATA'];
-// $data = json_decode($data, true);  // array
-// exit(var_dump($data));
+
 $data["name"] = $_POST["name"];
 $data["email"] = $_POST["email"];
 $data["message"] = $_POST["message"];
@@ -44,7 +41,7 @@ try {
   $mail->Subject = 'LENDA官网Contact回复';
   $mail->Body    = '客户姓名：'. $data["name"] .'<br>客户邮箱：'. $data["email"] .'<br>客户留言：'. $data["message"];
 
-  // $mail->send();
+  $mail->send();
   echo json_encode(['status' => 1]);
 } catch (Exception $e) {
   echo json_encode(['status' => 0, 'message' => 'Message could not be sent.' . $mail->ErrorInfo]);
