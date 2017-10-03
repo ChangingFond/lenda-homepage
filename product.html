@@ -113,20 +113,20 @@
             </ul>
 
             <ul class="col-sm-12 car-branch">
-              <li v-for="item in itemList" v-if="curLetter==item.letter">
-                <a v-cloak href="javascript:;" :class="{'active':curBranch==item.branch}" @click="curBranch=item.branch"
-                class="filter btn_fill_white btn_border btn_default" v-text="item.branch"></a>
+              <li v-for="branch in branches" v-if="curLetter==branch[0]">
+                <a v-cloak href="javascript:;" :class="{'active':curBranch==branch}" @click="curBranch=branch"
+                class="filter btn_fill_white btn_border btn_default" v-text="branch"></a>
               </li>
             </ul>
 
             <div id="portfoliolist">
-              <div v-for="product in productList" v-if="product.branch==curBranch" class="portfolio">
+              <div v-for="item in itemList" v-if="item.branch==curBranch" class="portfolio">
                 <div class="portfolio-wrapper">
-                  <a :href="product.productImage" alt="" />
-                  <img :src="product.productImage" alt="" />
+                  <a :href="'images/product/' + item.productImage" alt="" />
+                  <img :src="'images/product/' + item.productImage" alt="" />
                   <div class="label">
                     <div class="label-text">
-                      <a class="text-title" v-text="product.productName"></a>
+                      <a class="text-title" v-text="item.productName"></a>
                     </div>
                   </div>
                 </div>
@@ -229,41 +229,46 @@
         data:{
           type: '',
           itemList: [],
-          productList: [],
           letters: [],
+          branches: [],
           curLetter: '',
           curBranch: 'HONDA'
         },
         mounted() {
           this.$nextTick(function() {
             this.getUrlParam();
-            this.getitemList();
-            this.getLetters();
+            this.getItemList();
+            // this.getLetters();
           });
         },
         methods:{
           getUrlParam() {
             this.type = decodeURIComponent(location.search).slice(1);
           },
-          getitemList() {
-            axios.get('data/'+ this.type +'.json', {}).then((res) => {
+          getItemList() {
+            axios.get('http://localhost:3000/product', { params: { category: this.type }}).then((res) => {
               if(res.data.status == 0) {
-                this.itemList = res.data.result;
-                this.itemList.forEach( (item) => {
-                  item.products.forEach( (product) => {
-                    this.productList.push(product);
-                  })
-                });
+                this.itemList = res.data.result.items;
+                this.itemList.forEach((item) => {
+                  if (this.letters.indexOf(item.letter) === -1) {
+                    this.letters.push(item.letter)
+                  }
+                  if (this.branches.indexOf(item.branch) === -1) {
+                    this.branches.push(item.branch)
+                  }
+                })
+                this.letters.sort();
+                this.branches.sort();
               }
             }).catch((err) => {
               console.log(err);
             });
-          },
-          getLetters() {
-            for(var i = 0; i < 26; i++) {
-              this.letters.push(String.fromCharCode((65+i)));
-            }
-          },
+          }
+          // getLetters() {
+          //   for(var i = 0; i < 26; i++) {
+          //     this.letters.push(String.fromCharCode((65+i)));
+          //   }
+          // },
         }
       });
 
