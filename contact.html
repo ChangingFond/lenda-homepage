@@ -258,7 +258,7 @@
       if($("input[name='name']").val()=="" || $("input[name='email']").val()=="" || $("#message").val() == "") {
         $(".tip").html("Please fill in all blanks");
       }else {
-        axios.post('admin/mail/', $("#form").serialize()).then((res) => {
+        axios.post('mail/', $("#form").serialize()).then((res) => {
           if(res.data.status == 1) {
             $(".tip").html("Successful! We will contact you soon!");
           }else {
