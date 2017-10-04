@@ -246,7 +246,7 @@
             this.type = decodeURIComponent(location.search).slice(1);
           },
           getItemList() {
-            axios.get('http://localhost:3000/product', { params: { category: this.type }}).then((res) => {
+            axios.get('http://www.tjlenda.com:3000/product', { params: { category: this.type }}).then((res) => {
               if(res.data.status == 0) {
                 this.itemList = res.data.result.items;
                 this.itemList.forEach((item) => {
