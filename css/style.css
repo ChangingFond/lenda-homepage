@@ -618,7 +618,7 @@ ul.checks{}
     header.defaultwhite .navbar-brand{
       padding:20px 10px 20px 0;
     }
-    .navbar-brand > img{ width:100px;}
+    .navbar-brand > img{ width:150px;}
     nav.navbar.bootsnav ul.nav > li{
       margin:0 26px;
     }
